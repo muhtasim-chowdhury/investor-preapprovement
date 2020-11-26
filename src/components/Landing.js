@@ -12,7 +12,7 @@ export default function Landing() {
 
 	const validateInvtAmt = ({target: {value}}) => {
 		if (value.length < 1) setInvtAmt(value)
-		else Number.parseInt(value[value.length-1]) && setInvtAmt(value)
+		else isNumeric(value[value.length-1]) && setInvtAmt(value)
 	}
 
 	const validateInvtType = ({target: {value}}) => {
@@ -22,25 +22,27 @@ export default function Landing() {
 
 	const validateTNW = ({target: {value}}) => {
 		if (value.length < 1) setTNW(value)
-		else Number.parseInt(value[value.length-1]) && setTNW(value)
+		else isNumeric(value[value.length-1]) && setTNW(value)
 	}
 
 	const validateIncome = ({target: {value}}) => {
 		if (value.length < 1) setIncome(value)
-		else Number.parseInt(value[value.length-1]) && setIncome(value)
+		else isNumeric(value[value.length-1]) && setIncome(value)
 	}
 
 	const validateCredScore = ({target: {value}}) => {
 		if (value.length < 1) setCredScore(value)
-		else Number.parseInt(value[value.length-1]) && setCredScore(value)
+		else isNumeric(value[value.length-1]) && setCredScore(value)
 	}
 
 	const submit = e => {
 		e.preventDefault()
-		if (invtAmt.length < 1 || invtType.length < 1 || TNW.length < 1 || income.length < 1 || credScore.length < 1) 
-			setErr('Please do not leave any fields empty')
+		let score = Number.parseInt(credScore)
+		if (invtAmt.length < 1 || invtType.length < 1 || TNW.length < 1 || income.length < 1 || credScore.length < 1 || (score < 300 || score > 850)) 
+			setErr('Please do not leave any fields empty and keep Credit Score from 300-850')
 		else   {
-			// send them to account creation or disqualification
+			// check if they are qualified
+
 		}
 	}
 
@@ -60,6 +62,10 @@ export default function Landing() {
 	)
 }
 
+
+function isNumeric(str) {
+	return !isNaN(str)
+}
 
 function isAlpha(str) {
 	var code, i, len;
