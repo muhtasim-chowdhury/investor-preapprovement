@@ -57,7 +57,7 @@ export default function Landing({setQualified, setSubmitted}) {
 	return (
 		<div>
 			<h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eros sapien, cursus id cursus ac, cursus at erat. Nullam porta eu nibh vitae posuere. Nulla et fringilla leo. Pellentesque et lacus elit. Nulla dui turpis, finibus tempus elit vitae, scelerisque facilisis enim. Nulla facilisi. Proin non eleifend massa. </h1>
-			<h2 id='err'>{err}</h2>
+			<h2 className='err'>{err}</h2>
 			<div id='form'>
 				<label>Investment Amount $<input placeholder='' value={invtAmt} onChange={validateInvtAmt}/></label>
 				<label>Investment Type <input placeholder='' value={invtType} onChange={validateInvtType} /></label>

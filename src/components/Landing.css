@@ -3,6 +3,6 @@
 	flex-direction: column;
 }
 
-#err {
+.err {
 	height: 30px;
 }
