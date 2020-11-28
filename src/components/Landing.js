@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import './Landing.css';
 
 
-export default function Landing() {
+export default function Landing({setQualified, setSubmitted}) {
 	const [invtAmt, setInvtAmt] = useState('')
 	const [invtType, setInvtType] = useState('')
 	const [TNW, setTNW] = useState('')
@@ -42,7 +42,15 @@ export default function Landing() {
 			setErr('Please do not leave any fields empty and keep Credit Score from 300-850')
 		else   {
 			// check if they are qualified
-
+			mockFetch('www.api.com', {method: 'POST', body: JSON.stringify({invtAmt, income, credScore, TNW})})
+				.then(res => res.json())
+				.then(data => {
+					if (data.qualified)
+						setQualified(true)
+					else setQualified(false)
+					setSubmitted(true)
+				})
+				.catch(err => console.log(err))
 		}
 	}
 
@@ -71,11 +79,39 @@ function isAlpha(str) {
 	var code, i, len;
   
 	for (i = 0, len = str.length; i < len; i++) {
-	  code = str.charCodeAt(i);
-	  if (!(code > 64 && code < 91) && // upper alpha (A-Z)
-		  !(code > 96 && code < 123)) { // lower alpha (a-z)
-		return false;
-	  }
+		code = str.charCodeAt(i);
+		if (!(code > 64 && code < 91) && // upper alpha (A-Z)
+			!(code > 96 && code < 123)) { // lower alpha (a-z)
+			return false;
+		}
 	}
 	return true;
   };
+
+
+function mockFetch(url, {method, body} ) {
+	return new Promise((resolve, reject) => {
+		const invtInfo = JSON.parse(body)
+
+		if (Number.parseInt(invtInfo.invtAmt) > 9000000)
+			return reject({status: 400})
+
+		if (!isQualified(invtInfo))
+			return resolve({
+				json: ()=> ({qualified: false, msg: 'Lorum Ipsem', status: 200})
+			})
+		
+		return resolve({
+			json: () => ({qualified: true})
+		})
+	})
+}
+
+
+function isQualified({invtAmt, income, credScore, TNW}) {
+	if (invtAmt > 0.2*income)	return false
+	if (credScore < 600)	return false
+	if (invtAmt > 0.03*TNW) return false
+
+	return true
+}
