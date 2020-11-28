@@ -8,11 +8,12 @@ import './App.css';
 function App() {
   const [qualified, setQualified] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [disqualifyMsg, setDisqualifyMsg] = useState('')
 
   if (!submitted)
     return (
       <div className='App'>
-        <Landing setQualified={setQualified} setSubmitted={setSubmitted}/>
+        <Landing setQualified={setQualified} setSubmitted={setSubmitted} setDisqualifyMsg={setDisqualifyMsg}/>
       </div>
     )
 
@@ -26,7 +27,7 @@ function App() {
   if (submitted && !qualified)
       return (
         <div className='App'>
-          <Disqualification/>
+          <Disqualification msg={disqualifyMsg}/>
         </div>
       )
 }

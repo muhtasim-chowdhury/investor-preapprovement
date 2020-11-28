@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import './Landing.css';
 
 
-export default function Landing({setQualified, setSubmitted}) {
+export default function Landing({setQualified, setSubmitted, setDisqualifyMsg}) {
 	const [invtAmt, setInvtAmt] = useState('')
 	const [invtType, setInvtType] = useState('')
 	const [TNW, setTNW] = useState('')
@@ -47,7 +47,10 @@ export default function Landing({setQualified, setSubmitted}) {
 				.then(data => {
 					if (data.qualified)
 						setQualified(true)
-					else setQualified(false)
+					else {
+						setQualified(false)
+						setDisqualifyMsg(data.msg)
+					} 
 					setSubmitted(true)
 				})
 				.catch(err => console.log(err))

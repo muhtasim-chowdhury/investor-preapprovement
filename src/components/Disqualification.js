@@ -1,9 +1,7 @@
 import React from 'react'
 
-export default function Disqualification() {
+export default function Disqualification({msg}) {
 	return (
-		<div>
-			Disqualification
-		</div>
+		<div>{msg}</div>
 	)
 }
