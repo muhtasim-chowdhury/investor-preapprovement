@@ -1,6 +1,5 @@
-#landing {
+.main {
 	margin-top: 5vh;
-	/* border: 1px solid red; */
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -14,12 +13,12 @@
 	color: red;
 }
 #form {
-	/* border: 1px solid blue; */
-	width: 60vw;
+	width: 40vw;
 	height: 180px;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
+	align-items: center;
 }
 button {
 

@@ -28,12 +28,14 @@ export default function AccountCreation() {
 		)
 
 	return (
-		<div style={{display: 'flex', flexDirection: 'column'}}>
+		<div className='main'>
 			<h2 className='err'>{err}</h2>
-			<label>Username<input value={user} onChange={({target: {value}}) => setUser(value)}/></label>
-			<label>Password<input value={pass} onChange={({target: {value}}) => setPass(value)}/></label>
-			<label>Re-enter Password<input value={reEnterPass} onChange={({target: {value}}) => setReEnterPass(value)}/></label>
-			<button onClick={validate}>Create Account</button>
+			<div id='form'>
+				<label>Username<input value={user} onChange={({target: {value}}) => setUser(value)}/></label>
+				<label>Password<input value={pass} onChange={({target: {value}}) => setPass(value)}/></label>
+				<label>Re-enter Password<input value={reEnterPass} onChange={({target: {value}}) => setReEnterPass(value)}/></label>
+				<button onClick={validate}>Create Account</button>
+			</div>
 		</div>
 	)
 }

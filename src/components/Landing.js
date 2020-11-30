@@ -58,7 +58,7 @@ export default function Landing({setQualified, setSubmitted, setDisqualifyMsg}) 
 	}
 
 	return (
-		<div id='landing'>
+		<div className='main'>
 			<h1 className='lorem'>{lorem}</h1>
 			<h2 className='err'>{err}</h2>
 			<div id='form'>
