@@ -58,8 +58,8 @@ export default function Landing({setQualified, setSubmitted, setDisqualifyMsg}) 
 	}
 
 	return (
-		<div>
-			<h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eros sapien, cursus id cursus ac, cursus at erat. Nullam porta eu nibh vitae posuere. Nulla et fringilla leo. Pellentesque et lacus elit. Nulla dui turpis, finibus tempus elit vitae, scelerisque facilisis enim. Nulla facilisi. Proin non eleifend massa. </h1>
+		<div id='landing'>
+			<h1 className='lorem'>{lorem}</h1>
 			<h2 className='err'>{err}</h2>
 			<div id='form'>
 				<label>Investment Amount $<input placeholder='' value={invtAmt} onChange={validateInvtAmt}/></label>
@@ -101,7 +101,7 @@ function mockFetch(url, {method, body} ) {
 
 		if (!isQualified(invtInfo))
 			return resolve({
-				json: ()=> ({qualified: false, msg: 'Lorum Ipsem', status: 200})
+				json: ()=> ({qualified: false, msg: lorem, status: 200})
 			})
 		
 		return resolve({
@@ -118,3 +118,5 @@ function isQualified({invtAmt, income, credScore, TNW}) {
 
 	return true
 }
+
+const lorem = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eros sapien, cursus id cursus ac, cursus at erat. Nullam porta eu nibh vitae posuere. Nulla et fringilla leo. Pellentesque et lacus elit. Nulla dui turpis, finibus tempus elit vitae, scelerisque facilisis enim. Nulla facilisi. Proin non eleifend massa. '
